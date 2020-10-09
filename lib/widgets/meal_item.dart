@@ -9,11 +9,12 @@ class MealItem extends StatelessWidget {
   final Complexity complexity;
   final Affordability affordability;
   MealItem(
-      @required this.title,
-      @required this.imageUrl,
-      @required this.affordability,
-      @required this.complexity,
-      @required this.duration);
+       @required this.title,
+       @required this.imageUrl,
+       @required this.affordability,
+       @required this.complexity,
+       @required this.duration
+      );
 
   void selectMeal() {}
 
