@@ -11,7 +11,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   final List<Map<String, Object>> _pages = [
     {'page': CategoriesScreen(), 'title': 'Categories'},
-    {'page': FavouriteScreen(), 'title': 'Your Favourites'}
+    {'page': FavouriteScreen(), 'title': 'Your Favourite'}
   ];
   int _selectedPageIndex = 0;
 
@@ -45,7 +45,7 @@ class _TabsScreenState extends State<TabsScreen> {
               BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: Icon(Icons.star),
-                title: Text('Favourite'),
+                title: Text('Favourites'),
               )
             ]));
   }
