@@ -1,5 +1,4 @@
 import './favourites_screen.dart';
-
 import './categories_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,29 +8,43 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  final List<Map<String, Object>> _pages = [
+    {'page': CategoriesScreen(), 'title': 'Categories'},
+    {'page': FavouriteScreen(), 'title': 'Your Favourites'}
+  ];
+  int _selectedPageIndex = 0;
+
+  void _selectePage(int index) {
+    setState(() {
+      _selectedPageIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          title: Text('Meals'),
-          bottom: TabBar(tabs: <Widget>[
-            Tab(
-              icon: Icon(Icons.category),
-              text: 'Categories',
-            ),
-            Tab(
-              icon: Icon(Icons.star),
-              text: 'Favourites',
-            ),
-          ]),
+          title: Text(_pages[_selectedPageIndex]['title']),
         ),
-        body: TabBarView(children: <Widget>[
-          CategoriesScreen(),
-          FavouriteScreen(),
-        ]),
-      ),
-    );
+        body: _pages[_selectedPageIndex]['page'],
+        bottomNavigationBar: BottomNavigationBar(
+            onTap: _selectePage,
+            backgroundColor: Theme.of(context).primaryColor,
+            unselectedItemColor: Colors.white,
+            selectedItemColor: Theme.of(context).accentColor,
+            currentIndex: _selectedPageIndex,
+            type: BottomNavigationBarType.fixed,
+            items: [
+              BottomNavigationBarItem(
+                backgroundColor: Theme.of(context).primaryColor,
+                icon: Icon(Icons.category),
+                title: Text('Categories'),
+              ),
+              BottomNavigationBarItem(
+                backgroundColor: Theme.of(context).primaryColor,
+                icon: Icon(Icons.star),
+                title: Text('Favourite'),
+              )
+            ]));
   }
 }
